@@ -1,5 +1,9 @@
 package com.yeeun.web.grade;
 
-public class Grade {
+import lombok.Data;
 
+@Data	
+public class Grade {
+	private String userid, korean, english, math, java;
+	
 }

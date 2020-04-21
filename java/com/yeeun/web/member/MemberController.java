@@ -1,5 +1,6 @@
 package com.yeeun.web.member;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,25 +9,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.yeeun.web.util.Messenger;
+
 @RestController /* url을 처리하는 controller */
 @RequestMapping("/member") /*pakaga명과 일치시키는게 일반적이다 */
-
 public class MemberController {
-	public MemberService memberService;
+	@Autowired MemberService memberService;
 
 	@PostMapping("/join")
-	public Member add(@RequestBody Member member) {
-		System.out.println(">>>>");
-		System.out.println(member.toString());
-		memberService = new MemberServiceImpl();
+	public Messenger add(@RequestBody Member member) {
+		int current = memberService.Count();
 		memberService.add(member);
-		return member;
+		return (memberService.Count()==(current+1))? Messenger.SUCCESS: Messenger.FAIL;
 
 	}
 	@PostMapping("/login")
-	public String login(@RequestBody Member member) {
-		memberService = new MemberServiceImpl();
-		return (memberService.login(member))? "SUCCESS" : "FAIL";
+	public Messenger login(@RequestBody Member member) {
+		return (memberService.login(member))?Messenger.SUCCESS : Messenger.FAIL;
 	}
 	@GetMapping("/detail")
 	public Member detail(@RequestBody String userid) {

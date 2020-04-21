@@ -70,34 +70,33 @@ footer {
 </style>
 </head>
 <body>
-<h2>홈페이지</h2>
 <header>
-  <h2>Cities</h2>
+  <h2>성적표</h2>
 </header>
 
 <section>
   <nav>
     <ul>
       <li><a id="a-first" href="#">Join</a></li>
-      <li><a id="a-second" href="index.html">Login</a></li>
-      <li><a id="a-third" href="#">...</a></li>
+      <li><a id="a-second" href="../index.html">Login</a></li>
+      <li><a id="a-third" href="#">List</a></li>
     </ul>
   </nav>
   
   <article>
     <form action="#">
-    <label>NAME</label> <br>
-    <input id="name" type ="text"/> <br>
-    <label>ID	</label> <br>
-    <input id ="userid" type ="text"/> <br>
-    <label>PASSWORD	</label> <br>
-    <input id = "password" type ="text"/> <br>
-    <label>SSN	</label> <br>
-    <input id = "ssn" type ="text"/> <br>
-    <label>ADDRESS	</label> <br>
-    <input id = "addr" type ="text"/> <br>
-    <input id="join-button" type ="button" value="회원가입"> 
-    <input id ="cancel-button" type ="button" value="취소">
+    <label>ID</label> <br>
+    <input id="id" type ="text"/> <br>
+    <label>Korean</label> <br>
+    <input id ="korean" type ="text"/> <br>
+    <label>English</label> <br>
+    <input id = "english" type ="text"/> <br>
+    <label>Math	</label> <br>
+    <input id = "math" type ="text"/> <br>
+    <label>Java	</label> <br>
+    <input id = "java" type ="text"/> <br>
+    <input id="register-button" type ="button" value="점수등록"> 
+    <input id ="show-result" type ="button" value="총점, 평균, 학점 보기">
     
     
     </form>
@@ -115,29 +114,9 @@ $('#a-second').click(function(){
 })
 $('#a-third').click(function(){
 })
-$('#join-button').click(function(){
-	$.ajax({
-		url : '/member/join',
-		type : 'post',
-		data : JSON.stringify(
-			{name:	  $('#name').val(),
-			userid :  $('#userid').val(),
-			password: $('#password').val(),
-			ssn:	  $('#ssn').val(),
-			addr: 	  $('#addr').val()}),
-		dataType : 'json',
-		contentType : 'application/json',
-		success : function(member){
-			alert(member.name +'님의 회원가입을 축하합니다')
-			location.href="index.html"
-		},
-		error : function(){
-			alert('회원가입 실패')
-		}
-	})
+$('#register-button').click(function(){
 })
-$('#cancel-button').click(function(){
-	alert('취소버튼 클릭')
+$('#show-result').click(function(){
 
 })
 </script>
