@@ -61,6 +61,11 @@ public class MemberServiceImpl implements MemberService{
 	}
 		}
 
+	@Override
+	public boolean login(Member member) {
+		return true;
+	}
+
 
 	
 }
