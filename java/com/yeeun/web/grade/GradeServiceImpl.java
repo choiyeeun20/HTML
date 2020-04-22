@@ -1,85 +1,65 @@
 package com.yeeun.web.grade;
 
+import org.springframework.stereotype.Service;
+
+import com.yeeun.web.util.Credit;
+
+@Service
 public class GradeServiceImpl implements GradeService {
 	private Grade [] grades;
 	private int count;
 	
 	public GradeServiceImpl() {
 		grades = new Grade[5];
-		count++;
+		count = 0;
 	}
 
 	@Override
 	public void add(Grade grade) {
 		grades[count] = grade;
-		count =0;
+		count++;
 	}
 
 	@Override
-	public Grade[] list() {
-		return grades;
-	}
-
-	@Override
-	public Grade detail(Grade grade) {
-		Grade returnDetail = null;
-		for(int i=0;i<count;i++) {
-			if(grade.getUserid().equals(grades[i].getUserid())) {
-				returnDetail = grades[i];
-			}
-		}
-		return returnDetail;
-	}
-
-	@Override
-	public int Count() {
+	public int count() {
 		return count;
 	}
-
+	@SuppressWarnings("static-access")
 	@Override
-	public int total(Grade grade) {
-		 return Integer.parseInt(grade.getKorean() + grade.getEnglish() + grade.getMath());
-	}
-
-	@Override
-	public int average(Grade grade) {
-		return total(grade) / 3;
-	}
-
-	@Override
-	public String record(Grade grade) {
-		String result = "";
-		int average = average(grade);
-
-		if (average >= 90) {
-			result = "A";
-		} else if (average >= 80) {
-			result = "B";
-		} else if (average >= 70) {
-			result = "C";
-		} else if (average >= 60) {
-			result = "D";
-		} else if (average >= 50) {
-			result = "E";
-		} else {
-			result = "F";
+	public Credit detail(String userid) {
+		Credit credit = null;
+		switch(avg(userid)/10) {
+		case 10: case 9: credit = credit.A; break;
+		case 8: credit =credit.B; break;
+		case 7: credit =credit.C; break;
+		case 6: credit =credit.D; break;
+		case 5: credit =credit.E; break;
+		default: credit = credit.F; break;
 		}
-		return result;
+		return credit;
 	}
 
+	private int avg(String userid) {
+		return total(userid)/4 ;
+	}
 
-	@Override
-	public void update(Grade grade) {
-		
-			
-		}
-		
+	private int total(String userid) {
+		int total = 0;
+		for (int i=0;i<count;i++)
+			if(userid.equals(grades[i].getUserid())) {
+				total = Integer.parseInt(grades[i].getKorean())
+						+Integer.parseInt(grades[i].getEnglish())
+						+Integer.parseInt(grades[i].getMath())
+						+Integer.parseInt(grades[i].getJava());
+			}
+		return total;
+	}
+
 	
 
-	@Override
-	public void delete(Grade grade) {
-		
-	}
+
+	
+
 
 	
 

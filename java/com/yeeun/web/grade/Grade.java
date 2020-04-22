@@ -2,7 +2,8 @@ package com.yeeun.web.grade;
 
 import lombok.Data;
 
-@Data	
+@Data
+
 public class Grade {
 	private String userid, korean, english, math, java;
 	
