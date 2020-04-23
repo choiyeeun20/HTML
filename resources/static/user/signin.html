@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="EUC-KR">
 <title>Insert title here</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -72,27 +72,23 @@ footer {
 </head>
 <body>
 	<header>
-		<h2>ë¡œê·¸ì¸</h2>
+		<h2>»ç¿ëÀÚ ·Î±×ÀÎ</h2>
 	</header>
 
-	<section>
-		<nav>
-			<ul>
-				<li><a id="join_a">ê´€ë¦¬ì ë“±ë¡</a></li>
-				<li><a id="login_a">ê´€ë¦¬ì ì ‘ì†</a></li>
-				<li><a id="signup_a">ì‚¬ìš©ì  ê°€ì…</a></li>
-				<li><a id="signin_a">ì‚¬ìš©ì ë¡œê·¸ì¸</a></li>
+<section>
+	<nav>
+		<ul>
+		  <li><a id="home_a">È¨À¸·Î</a></li>
+
 			</ul>
 		</nav>
 
 		<article>
 			<form action="#">
-				<label>ID </label> <br> 
-				<input id="userid" type="text" /> <br>
-				<label>PASSWORD </label> <br> 
-				<input id="password" type="text" /><br> 
-				<input id="login-button" type="button" value="ë¡œê·¸ì¸">
-				<input id="cancel-button" type="button" value="ì·¨ì†Œ">
+				<label>ID </label> <br> <input id="userid" type="text" /> <br>
+				<label>PASSWORD </label> <br> <input id="password" type="text" /><br> 
+				<input id="login-button" type="button" value="·Î±×ÀÎ">
+				<input id="cancel-button" type="button" value="Ãë¼Ò">
 
 
 			</form>
@@ -103,59 +99,44 @@ footer {
 		<p>Footer</p>
 	</footer>
 
-	<script type="text/javascript">
-$('#join_a')
-	.css('cursor','not-allowed')
-	.click(e=>{
-	e.preventDefault()
-	location.href = "member/join.html"
-})
-$('#login_a')
-	.css('cursor','not-allowed')
-	.click(e=>{
-	e.preventDefault()
-	location.href = "index.html"
-})
-$('#signup_a')
+<script type="text/javascript">
+$('#home_a')
 	.css('cursor','pointer')
 	.click(e=>{
-		e.preventDefault()
-		location.href = "user/signup.html"
-})
-$('#signin_a')
-	.css('cursor','pointer')
-	.click(e=>{
-		e.preventDefault()
-		location.href = "user/signin.html"
-})	
+	e.preventDefault()
+	location.href = "../index.html"
+	})
 $('#login-button')
 	.css('cursor','wait')
-	.click(e =>{
+	.click(e=>{
 	e.preventDefault()
 	$.ajax({
-	url: '/member/login',
+	url:'/user/login',	
 	type: 'post',
-	data: JSON.stringify(
-			{userid: $('#userid').val(),
-			 password: $('#password').val()}),
+	data : JSON.stringify({
+		userid: $('#userid').val(),
+		password: $('#password').val()
+		}),
 	dataType: 'json',
-	contentType: 'application/json',
-	success :d => {
-		if(d === 'SUCCESS'){
-			location.href = "grade/register.html"
+	contentType : 'application/json',
+	success : d=>{
+		if(d.messenger === 'SUCCESS'){
+			location.href = 'mypage.html'
 		}else{
-			alert('ë‹¤ì‹œ ë¡œê·¸ì¸ í•´ì£¼ì„¸ìš”')
-			location.href = "index.html"
-		
-	}
-		},
-		error: (r,x,e)=>{
-			alert(r.status)
+			alert('´Ù½Ã ·Î±×ÀÎ ÇØÁÖ¼¼¿ä')
+			location.href = "signin.html"
 		}
-	})
+	},
+	error : (r,x,e )=> {
+		
+		alert(r.status)
+	}
+
+})
 })
 $('#cancel-button').click(e=>{
-	alert('ì·¨ì†Œ ë²„íŠ¼ í´ë¦­')
+	e.preventDafault()
+	alert('Ãë¼Ò¹öÆ° Å¬¸¯')
 
 })
 </script>

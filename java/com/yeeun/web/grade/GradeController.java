@@ -12,12 +12,13 @@ import com.yeeun.web.util.Credit;
 import com.yeeun.web.util.Messenger;
 
 @RestController /*페이지이동없이 현재페이지에서 처리*/
-@RequestMapping("/grade") /*클라이언트가 요청한 url를 처리*/
+@RequestMapping("/grade") /*클라이언트가 요청한 URL를 처리할 메서드 */
 
 public class GradeController {
-	@Autowired GradeService gradeService; /*의존하고있는 baen을 가져다 쓸수있음*/
-	@PostMapping("/register")/*POST:새로운 데이터 생성;등록이므로 Create개념의 POST*/
-	public Messenger register(@RequestBody Grade grade) {/*클라이언트가 url을 통해 데이터를 입력하면 html의 body에 넣어짐. 그  body에 입력된 데이러를 통째로 불러와서  Grade grade에 그대로 세팅함*/
+	@Autowired GradeService gradeService; /*의존하고있는 bean을 가져다 쓸수있음*/ 
+	@PostMapping("/register")/*POST:새로운 데이터 생성;등록이므로 Create개념의 POST* ("/URL의 자리.")/
+					/*register는 key. key는 String 타입이다*/
+	public Messenger register(@RequestBody Grade grade) {/*클라이언트가 URL을 통해 데이터를 입력하면 HTML의 body에 넣어짐. 그  body에 입력된 데이러를 통째로 불러와서  Grade grade에 그대로 세팅함*/
 		int current  = gradeService.count();
 		gradeService.add(grade);
 		return gradeService.count()==(current+1)? Messenger.SUCCESS: Messenger.FAIL;
