@@ -21,7 +21,7 @@ public class UserController {
 		userService.add(user);
 		return (userService.count() == count+1) ? Messenger.SUCCESS:Messenger.FAIL ;
 	}
-	@PostMapping("login")
+	@PostMapping("/login")
 	public Map<String, Object> login(@RequestBody User user) {
 		Map<String, Object> returnMap = new HashMap<>();
 		User loginedUser = userService.login(user);

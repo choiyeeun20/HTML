@@ -77,7 +77,7 @@ footer {
 <section>
   <nav>
     <ul>
-      <li><a id="home_a">홈으로</a></li>
+      <li><a id="home_a">HOME</a></li>
       
     </ul>
   </nav>
@@ -118,7 +118,7 @@ $('#join-button')
 	.click(e=>{
 	e.preventDefault()
 	$.ajax({
-		url : '/user/join',
+		url : '/user/join', /*UserController의 join메서드와 연결됨*/
 		type : 'post',
 		data : JSON.stringify(
 			{name:	  $('#name').val(),
