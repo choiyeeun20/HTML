@@ -35,7 +35,20 @@ public class UserServiceImpl implements UserService {
 	}
 	@Override
 	public User detail(String userid) {
+		System.out.println("서비스 detail 들어온 id" + userid);
+		User t = (User) map.get(userid);
+		System.out.println("==========>" +t);
 		return (User) map.get(userid);
+	}
+	@Override
+	public boolean update(User user) {
+		map.replace(user.getUserid(), user);
+		return true;
+	}
+	@Override
+	public boolean remove(String userid) {
+		map.remove(userid);
+		return true;
 	}
 	
 

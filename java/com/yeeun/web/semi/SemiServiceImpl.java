@@ -11,17 +11,21 @@ public class SemiServiceImpl implements SemiService {
 	
 	public SemiServiceImpl() {
 		map = new HashMap<>();
-		}
-	
+	}
 	
 	@Override
 	public void add(Semi semi) {
-		
+		map.put(semi.getUserid(), semi);
 	}
 
 	@Override
 	public Semi login(Semi semi) {
 		return null;
+	}
+
+	@Override
+	public int count() {
+		return map.size();
 	}
 
 }
