@@ -1,4 +1,4 @@
-package com.yeeun.web.semi;
+package com.yeeun.web.hum;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,20 +6,20 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SemiServiceImpl implements SemiService {
+public class HumServiceImpl implements HumService {
 	private Map<String, Object> map;
 	
-	public SemiServiceImpl() {
+	public HumServiceImpl() {
 		map = new HashMap<>();
 	}
 	
 	@Override
-	public void add(Semi semi) {
-		map.put(semi.getUserid(), semi);
+	public void add(Hum hum) {
+		map.put(hum.getUserid(), hum);
 	}
 
 	@Override
-	public Semi login(Semi semi) {
+	public Hum login(Hum hum) {
 		return null;
 	}
 

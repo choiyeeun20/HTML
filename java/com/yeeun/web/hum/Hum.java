@@ -1,9 +1,9 @@
-package com.yeeun.web.semi;
+package com.yeeun.web.hum;
 
 import lombok.Data;
 
 @Data
 
-public class Semi {
+public class Hum {
 	private String name, userid, passwd, ssn, addr;
 }

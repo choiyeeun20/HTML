@@ -54,6 +54,7 @@
 			    </nav>
             </div>
             <button id = "update_button" class="btn btn-primary btn-lg btn-block" type="submit">정보 수정하기</button>
+            <button id = "cancel_button" class="btn btn-primary btn-lg btn-block" type="submit">취소</button>
           </form>
         </div>
       </div>
@@ -92,12 +93,19 @@
     	  $('#ssn').text(d.ssn)
     	  $('#password').text(d.password)
       })
-      $('#update_button').click(e=>{
+      $('#update_button')
+      .css('cursor','pointer')
+      .click(e=>{
     	  e.preventDefault()
-    	  location.href = 'update.html'
+    	  location.href = "update.html"
       })
-    </script>
-  
+      $('#cancel_button')
+       .css('cursor','pointer')
+      .click(e=>{
+    	  e.preventDefault()
+    	  location.href = "../index.html"
+      })
+    </script>  
 
 </body>
 </html>

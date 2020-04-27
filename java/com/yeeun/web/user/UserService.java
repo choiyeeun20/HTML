@@ -1,5 +1,7 @@
 package com.yeeun.web.user;
 
+import java.util.List;
+
 public interface UserService {
 	public void add(User user);/* join기능 */
 
@@ -13,4 +15,10 @@ public interface UserService {
 
 	public boolean remove(String userid);
 
-}
+	public List<User> list();
+
+	public void saveFile(User user);
+
+	public List<User> readFile();
+	
+	}
