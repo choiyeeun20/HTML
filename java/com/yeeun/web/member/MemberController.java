@@ -19,6 +19,7 @@ public class MemberController {
 	@PostMapping("/join")
 	public Messenger add(@RequestBody Member member) {
 		int current = memberService.Count();
+		String s = "";
 		memberService.add(member);
 		return (memberService.Count()==(current+1))? Messenger.SUCCESS: Messenger.FAIL;
 

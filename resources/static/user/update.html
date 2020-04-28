@@ -110,7 +110,6 @@
     			  && password === $('#password').val()){
     		  alert('변경사항이 없습니다')
     	  }else{
-    		  alert('@@@@@@@@')
     		  $.ajax({
     			url : '/user/update',
     		    type: 'put',
@@ -124,23 +123,19 @@
     		  dataType: 'json',
     		  contentType : 'application/json',
     		  success: d =>{
-    			  alert('1   '+d)
     			if(d === 'SUCCESS'){
-    				alert('2   '+d)
     				location.href = 'mypage.html'
     			
     			}else{
-    				alert('3   '+d)
     				location.href = 'update.html'
     			}
     		},
     		  error : (r, x, e)=>{
-    			  alert('4   ')
 				  alert(r.status)
     		  }
     		  })
     	  }
-    		 }) //
+    		 }) 
     	 $('#remove_button').click(e=>{
     		  e.preventDefault()
     		  $.ajax({

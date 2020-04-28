@@ -17,6 +17,7 @@ import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class UserServiceImpl implements UserService{
 	private Map<String, Object> map;
@@ -101,6 +102,7 @@ public class UserServiceImpl implements UserService{
 		
 	}
 
+	@SuppressWarnings("null")
 	@Override
 	public List<User> readFile() {
 		List<User> userlist = new ArrayList<>();
@@ -116,7 +118,7 @@ public class UserServiceImpl implements UserService{
 		} catch(Exception e) {
 			System.out.println("파일 읽기에서 에러 발생");
 		}
-		User u = new User();
+		User u = null;
 		for(int i =0;i < list.size(); i++) {
 			String[] arr = list.get(i).split(",");
 			u.setName(arr[0]);
@@ -127,6 +129,13 @@ public class UserServiceImpl implements UserService{
 			userlist.add(u);
 		}
 		return userlist;
+	}
+
+	@Override
+	public boolean idSearch(String userid) {
+		boolean ok = true;
+		
+		return false;
 	}
 }
 

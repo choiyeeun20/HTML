@@ -1,7 +1,6 @@
 package com.yeeun.web.user;
 
 import java.util.ArrayList;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,18 +24,21 @@ public class UserController {
 	@PostMapping("/join")
 	public Messenger join(@RequestBody User user) {
 		int count = userService.count();
-		userService.add(user);
-		return (userService.count() == count+1) ? Messenger.SUCCESS:Messenger.FAIL ;
+		userService.saveFile(user);
+		//return (userService.count() == count+1) ? Messenger.SUCCESS:Messenger.FAIL ;
+		return Messenger.SUCCESS;
 	}
 	@GetMapping("/list")
 	public List<User> list(){
-		return userService.list();
+		return userService.readFile();
+		//return userService.list();
+		
 		
 	}
 	
 	@PostMapping("/login")
-	public Map<String, Object> login(@RequestBody User user) {
-		Map<String, Object> returnMap = new HashMap<>();
+	public Map<String,Object> login(@RequestBody User user) {
+		Map<String,Object> returnMap = new HashMap<>();
 		User loginedUser = userService.login(user);
 		if(loginedUser != null) {
 			returnMap.put("user", loginedUser);
@@ -44,9 +46,7 @@ public class UserController {
 		}else {
 			returnMap.put("messenger", Messenger.FAIL);
 		}
-		
 		return returnMap;
-		
 	}
 	@GetMapping("/detail/{userid}")/*a 변수처리*/
 	public User detail(@PathVariable String userid) {
@@ -65,4 +65,10 @@ public class UserController {
 		return (userService.remove(userid)) ? Messenger.SUCCESS: Messenger.FAIL;
 		
 	}
+
+	@GetMapping("/idSearch/{userid}")
+	public Messenger idSearch(@PathVariable String userid) {
+		return (userService.idSearch(userid)) ? Messenger.SUCCESS: Messenger.FAIL;
+		
+}
 }
